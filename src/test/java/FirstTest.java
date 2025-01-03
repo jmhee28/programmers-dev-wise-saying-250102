@@ -30,6 +30,7 @@ public class FirstTest {
 
         // 출력값을 체크
     }
+
     @Test
     @DisplayName("명령을 여러번 입력할 수 있다.")
     void t4() {
@@ -80,6 +81,24 @@ public class FirstTest {
 
         assertThat(out)
                 .contains("1번 명언이 등록되었습니다.");
+
+    }
+
+    @Test
+    @DisplayName("등록 - 명언 2개 입력, 명언 번호가 증가")
+    void t8() {
+        String out = TestBot.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                현재를 사랑하라.
+                작자미상
+                """);
+
+        assertThat(out)
+                .contains("1번 명언이 등록되었습니다.")
+                .contains("2번 명언이 등록되었습니다.");
 
     }
 }
