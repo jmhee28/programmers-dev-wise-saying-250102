@@ -36,7 +36,11 @@ public class FirstTest {
     void t4() {
         String out = TestBot.run("""
                 등록
+                현재를 사랑하라.
+                작자미상
                 등록
+                현재를 사랑하라.
+                작자미상
                 종료
                 """);
 
