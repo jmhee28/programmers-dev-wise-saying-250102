@@ -40,9 +40,5 @@ public class Main {
         String val3 = scan.nextLine();
         System.out.println(val3);
 
-        //테스트봇 만들기
-
-        App app = new App();
-        app.run();
     }
 }
