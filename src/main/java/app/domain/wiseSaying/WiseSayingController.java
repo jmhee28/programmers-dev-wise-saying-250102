@@ -1,5 +1,7 @@
 package app.domain.wiseSaying;
 
+import app.global.Command;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,13 +36,9 @@ public class WiseSayingController {
         });
     }
 
-    public void actionDelete(String cmd) {
+    public void actionDelete(Command cmd) {
 
-        String param = cmd.split("\\?")[1];
-        String[] paramBits = param.split("=");
-        String strId = paramBits[1];
-        int id = Integer.parseInt(strId);
-
+        int id = cmd.getParamAsInt("id");
         boolean result = wiseSayingService.delete(id);
 
         if(!result) {
