@@ -8,21 +8,23 @@ public class Command {
 
     public Command(String cmd) {
 
-        // ""
-        // 등록
-
         String[] cmdBits = cmd.split("\\?"); //[삭제, id=1]
         actionName = cmdBits[0];
 
         if(cmdBits.length < 2) {
-            paramValue = "";
             return;
         }
 
         String param = cmdBits[1];
 
-        String[] paramBits = param.split("=");
+
+        // 목록?expr=1=1
+        String[] paramBits = param.split("=", 2);
         paramKey = paramBits[0];
+        if(paramBits.length < 2) {
+            return;
+        }
+
         paramValue = paramBits[1];
 
     }
@@ -31,7 +33,7 @@ public class Command {
         return actionName;
     }
 
-    public int getParam() {
-        return Integer.parseInt(paramValue);
+    public String getParam() {
+        return paramValue;
     }
 }
