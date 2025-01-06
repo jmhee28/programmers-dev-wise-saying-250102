@@ -22,5 +22,9 @@ public class Util {
                 e.printStackTrace();
             }
         }
+
+        public static String readAsString(String file) {
+            return null;
+        }
     }
 }
