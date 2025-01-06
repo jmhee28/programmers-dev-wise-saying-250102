@@ -14,9 +14,6 @@ public class WiseSayingRepository {
     }
 
     public WiseSaying save(WiseSaying wiseSaying) {
-
-        // 명언 등록 / 수정 구별?
-
         if(!wiseSaying.isNew()) {
             return wiseSaying;
         }
