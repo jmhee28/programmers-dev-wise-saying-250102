@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class WiseSayingController {
 
     private final Scanner sc;
-    private WiseSayingService wiseSayingService;
+    private final WiseSayingService wiseSayingService;
 
     public WiseSayingController(Scanner sc) {
         this.sc = sc;

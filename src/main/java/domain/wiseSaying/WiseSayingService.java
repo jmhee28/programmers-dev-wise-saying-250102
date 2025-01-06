@@ -5,6 +5,7 @@ import java.util.List;
 public class WiseSayingService {
 
     private final WiseSayingRepository wiseSayingRepository;
+
     public WiseSayingService() {
         wiseSayingRepository = new WiseSayingRepository();
     }
