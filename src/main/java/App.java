@@ -21,10 +21,17 @@ public class App {
         while (true) {
             System.out.println("명령 ) ");
             String cmd = sc.nextLine();
-            switch (cmd) {
+
+            // 명령?부가정보 => 명령, 부가정보
+            // 삭제?id=1 -> [삭제, id=1]
+            String[] cmdBits = cmd.split("\\?");
+            String actionName = cmdBits[0];
+
+            switch (actionName) {
                 case "종료" -> systemController.exit();
                 case "등록" -> wiseSayingController.actionWrite();
                 case "목록" -> wiseSayingController.actionPrint();
+                case "삭제" -> wiseSayingController.actionDelete(cmd);
                 default -> System.out.println("올바른 명령이 아닙니다.");
             }
             if(cmd.equals("종료")) break;
