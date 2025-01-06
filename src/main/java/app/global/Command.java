@@ -16,4 +16,7 @@ public class Command {
         return actionName;
     }
 
+    public int getParam() {
+        return 0;
+    }
 }
