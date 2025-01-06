@@ -24,4 +24,15 @@ public class CommandTest {
 
     }
 
+    @Test
+    @DisplayName("action 네임을 얻어올 수 있다. 입력값이 삭제. ?가 없으면 잘 나오는지 확인")
+    void t3() {
+
+        Command cmd = new Command("삭제");
+        String actionName = cmd.getActionName();
+
+        assertThat(actionName).isEqualTo("삭제");
+
+    }
+
 }

@@ -6,6 +6,8 @@ public class Command {
 
     public Command(String cmd) {
 
+
+        // 삭제
         String[] cmdBits = cmd.split("\\?");
         actionName = cmdBits[0];
     }
