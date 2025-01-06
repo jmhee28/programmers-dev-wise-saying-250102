@@ -1,5 +1,7 @@
 package app.standard;
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.nio.file.Files;
@@ -10,14 +12,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class FileTest {
 
-    // 1. 폴더 생성
+    // 3. 테스트 시작 전에 test 폴더 생성
+    // 테스트 전처리
 
-    // 2. 폴더 삭제
+    @BeforeAll
+    static void beforeAll() {
+        System.out.println("테스트 실행 전에 한번 실행");
+        Util.File.createDir("test");
+    }
 
-    // 테스트 시작 전에 test 폴더 생성
+    @AfterAll
+    static void afterAll() {
+        System.out.println("테스트 실행 후에 한번 실행");
+        Util.File.delete("test");
+    }
 
-    // 테스트 종료 후에 test 폴더 삭제
-
+    // 4. 테스트 종료 후에 test 폴더 삭제
+    // 테스트 후처리
 
     @Test
     @DisplayName("최초의 파일 테스트")
