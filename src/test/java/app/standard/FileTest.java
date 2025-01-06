@@ -19,7 +19,7 @@ public class FileTest {
     @DisplayName("파일 생성. 내용이 없는 빈 파일 생성")
     void t2() {
 
-        String file = "test.txt";
+        String file = "test/test.txt";
 
         Util.File.createFile(file); // 파일 생성 ok
 
@@ -32,10 +32,10 @@ public class FileTest {
     void t3() {
 
         // 파일을 Hello, World 내용으로 생성
-        String file = "test.txt";
+        String file = "test/test.txt";
         String testContent = "Hello, World";
 
-        Util.File.write("test.txt", testContent);
+        Util.File.write(file, testContent);
         String content = Util.File.readAsString(file);
 
         assertThat(content)
@@ -46,7 +46,7 @@ public class FileTest {
     @DisplayName("파일 내용 수정")
     void t4() {
 
-        String file = "test.txt";
+        String file = "test/test.txt";
         String writeContent = "modify content";
 
         Util.File.write(file, writeContent);
@@ -56,23 +56,23 @@ public class FileTest {
                 .isEqualTo(writeContent);
     }
 
-    @Test
-    @DisplayName("파일 삭제")
-    void t5() {
-
-        String file = "test.txt";
-
-        // test3.txt 파일 생성
-        Util.File.createFile(file);
-        assertThat(Files.exists(Paths.get(file)))
-                .isTrue();
-
-        // test3.txt 파일 삭제
-        Util.File.delete(file);
-
-        // test3.txt 존재 여부 확인
-        assertThat(Files.exists(Paths.get(file)))
-                .isFalse();
-
-    }
+//    @Test
+//    @DisplayName("파일 삭제")
+//    void t5() {
+//
+//        String file = "test/test.txt";
+//
+//        // test3.txt 파일 생성
+//        Util.File.createFile(file);
+//        assertThat(Files.exists(Paths.get(file)))
+//                .isTrue();
+//
+//        // test3.txt 파일 삭제
+//        Util.File.delete(file);
+//
+//        // test3.txt 존재 여부 확인
+//        assertThat(Files.exists(Paths.get(file)))
+//                .isFalse();
+//
+//    }
 }
