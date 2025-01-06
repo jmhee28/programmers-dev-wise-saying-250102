@@ -51,7 +51,7 @@ public class CommandTest {
     void t5() {
 
         Command cmd = new Command("삭제?id=2");
-        String strId = cmd.getParam();
+        String strId = cmd.getParam("id");
         int id = Integer.parseInt(strId);
 
         assertThat(id).isEqualTo(2);
@@ -62,13 +62,13 @@ public class CommandTest {
     void t6() {
 
         Command cmd1 = new Command("목록?expr=1=1");
-        String param1 = cmd1.getParam();
+        String param1 = cmd1.getParam("expr");
 
         Command cmd2 = new Command("목록?page");
-        String param2 = cmd2.getParam();
+        String param2 = cmd2.getParam("page");
 
         Command cmd3 = new Command("삭제?id=aa");
-        String param3 = cmd3.getParam();
+        String param3 = cmd3.getParam("id");
 
         assertThat(param1).isEqualTo("1=1");
         assertThat(param2).isNull();

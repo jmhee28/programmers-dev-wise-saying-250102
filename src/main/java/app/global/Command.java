@@ -1,12 +1,17 @@
 package app.global;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Command {
 
     String actionName;
-    String paramKey;
-    String paramValue;
+    Map<String, String> paramMap;
+
 
     public Command(String cmd) {
+
+        paramMap = new HashMap<>();
 
         String[] cmdBits = cmd.split("\\?"); //[삭제, id=1]
         actionName = cmdBits[0];
@@ -15,25 +20,25 @@ public class Command {
             return;
         }
 
-        String param = cmdBits[1];
+        String queryString = cmdBits[1];
+        String[] params = queryString.split("&"); // ["key1=val1", "key2=val2"]
 
+        for(String param : params) {
+            String[] paramBits = param.split("=", 2);
 
-        // 목록?expr=1=1
-        String[] paramBits = param.split("=", 2);
-        paramKey = paramBits[0];
-        if(paramBits.length < 2) {
-            return;
+            if(paramBits.length < 2) {
+                continue;
+            }
+
+            paramMap.put(paramBits[0], paramBits[1]);
         }
-
-        paramValue = paramBits[1];
-
     }
 
     public String getActionName() {
         return actionName;
     }
 
-    public String getParam() {
-        return paramValue;
+    public String getParam(String key) {
+        return paramMap.get(key);
     }
 }
