@@ -147,4 +147,22 @@ public class FirstTest {
                 .contains("2 / 작자미상 / 과거에 집착하지 마라.")
                 .doesNotContain("1 / 작자미상 / 현재를 사랑하라.");
     }
+
+    @Test
+    @DisplayName("삭제 예외 처리 - 없는 id로 삭제를 시도하면 예외처리 메시지가 나온다.")
+    void t11() {
+        String out = TestBot.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                작자미상
+                삭제?id=1
+                삭제?id=1
+                """);
+
+        assertThat(out)
+                .contains("1번 명언은 존재하지 않습니다.");
+    }
 }
