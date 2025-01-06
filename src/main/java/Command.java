@@ -1,4 +1,4 @@
-package PACKAGE_NAME;
-
 public class Command {
+
+    // 쪼개기 작업
 }
