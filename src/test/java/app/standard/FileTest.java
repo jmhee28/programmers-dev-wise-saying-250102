@@ -33,7 +33,7 @@ public class FileTest {
     @DisplayName("파일 내용 읽어오기")
     void t3() {
 
-        String testContent = "Hello, World!";
+        String testContent = "Hello, World";
 
         String file = "test.txt";
         String content = Util.File.readAsString(file);

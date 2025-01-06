@@ -1,5 +1,6 @@
 package app.standard;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,7 +25,17 @@ public class Util {
         }
 
         public static String readAsString(String file) {
-            return null;
+
+            Path filePath = Paths.get(file);
+
+            try {
+                return Files.readString(filePath);
+            } catch (IOException e) {
+                System.out.println("파일 읽기 실패");
+                e.printStackTrace();
+            }
+
+            return "";
         }
     }
 }
