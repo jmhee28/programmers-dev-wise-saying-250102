@@ -17,10 +17,10 @@ public class CommandTest {
     @DisplayName("action 네임을 얻어올 수 있다. 삭제?id=1 이면 삭제가 나와야 한다.")
     void t2() {
 
-        Command cmd = new Command("삭제?id=1");
+        Command cmd = new Command("목록?id=1");
         String actionName = cmd.getActionName();
 
-        assertThat(actionName).isEqualTo("삭제");
+        assertThat(actionName).isEqualTo("목록");
 
     }
 
