@@ -102,4 +102,16 @@ public class FileTest {
 
     }
 
+    @Test
+    @DisplayName("폴더 삭제")
+    void t7() {
+
+        String dirPath = "test";
+
+        Util.File.delete(dirPath);
+
+        assertThat(Files.exists(Paths.get(dirPath)))
+                .isFalse();
+    }
+
 }
