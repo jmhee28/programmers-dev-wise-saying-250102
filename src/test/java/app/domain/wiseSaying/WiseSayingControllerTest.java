@@ -1,9 +1,12 @@
+package app.domain.wiseSaying;
+
+import app.standard.TestBot;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class FirstTest {
+public class WiseSayingControllerTest {
 
 
     @Test
@@ -14,7 +17,7 @@ public class FirstTest {
 
     @Test
     void t2() {
-//        App app = new App();
+//        app.App app = new app.App();
 //        app.run();
 
         // aaa가 출력되는가?

@@ -1,4 +1,4 @@
-package domain.wiseSaying;
+package app.domain.wiseSaying;
 
 import java.util.List;
 
