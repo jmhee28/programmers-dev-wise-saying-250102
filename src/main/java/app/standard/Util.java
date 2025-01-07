@@ -124,5 +124,8 @@ public class Util {
 
             return jsonBuilder.toString();
         }
+
+        public static void writeAsMap(String filePath, Map<String, Object> wiseSayingMap) {
+        }
     }
 }
