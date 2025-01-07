@@ -109,8 +109,21 @@ public class Util {
             }
         }
 
-        public static List<Path> getPaths() {
-            return null;
+        public static List<Path> getPaths(String dirPathStr) {
+
+            Path dirPath = Paths.get(dirPathStr);
+
+            try {
+                return Files.walk(dirPath)
+                        .filter(Files::isRegularFile)
+                        .toList();
+
+            } catch (Exception e) {
+                System.out.println("파일 목록 가져오기 실패");
+                e.printStackTrace();
+            }
+
+            return List.of();
         }
     }
 

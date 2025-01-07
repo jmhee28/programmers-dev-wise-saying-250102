@@ -172,7 +172,7 @@ public class FileTest {
                 .isTrue();
 
 
-        List<Path> paths = Util.File.getPaths();
+        List<Path> paths = Util.File.getPaths("test/");
 
         assertThat(paths)
                 .hasSize(3)
