@@ -26,6 +26,23 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
 
     public List<WiseSaying> findAll() {
 
+
+        
+//        명령형
+//        List<Path> paths = Util.File.getPaths(DB_PATH);
+//        List<WiseSaying> wiseSayingList = new ArrayList<>();
+//        
+//        for(Path path : paths) {
+//            String filePath = path.toString();
+//            Map<String, Object> map = Util.Json.readAsMap(filePath);
+//            WiseSaying wiseSaying = WiseSaying.fromMap(map);
+//            wiseSayingList.add(wiseSaying);
+//        }
+//        
+//        return wiseSayingList;
+
+
+        // 선언형
         return Util.File.getPaths(DB_PATH).stream()
                 .map(Path::toString)
                 .map(Util.Json::readAsMap)
