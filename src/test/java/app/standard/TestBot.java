@@ -8,8 +8,6 @@ import java.util.Scanner;
 
 public class TestBot {
 
-    // 자바 시간에 객체는 static 지양.
-
     public static String run(String input) {
         Scanner sc = new Scanner(input + "종료\n");
 
