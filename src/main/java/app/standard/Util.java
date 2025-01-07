@@ -1,8 +1,11 @@
 package app.standard;
 
+import app.domain.wiseSaying.WiseSaying;
+
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Map;
 
 public class Util {
     public static class File {
@@ -98,6 +101,13 @@ public class Util {
             } catch (IOException e) {
                 System.err.println("폴더 삭제 중 오류 발생: " + e.getMessage());
             }
+        }
+    }
+
+    public static class Json {
+
+        public static String mapToJson(Map<String, Object> map) {
+            return null;
         }
     }
 }
