@@ -1,5 +1,6 @@
 package app.standard;
 
+import app.domain.wiseSaying.WiseSaying;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -50,7 +51,6 @@ public class JsonTest {
                         """.stripIndent().trim());
     }
 
-
     @Test
     @DisplayName("Map을 Json으로 변환3 - 속성이 3개, 문자와 숫자 혼합")
     void t3() {
@@ -67,6 +67,25 @@ public class JsonTest {
                             "name" : "홍길동",
                             "home" : "서울",
                             "age" : 20
+                        }
+                        """.stripIndent().trim());
+    }
+
+    @Test
+    @DisplayName("WiseSaying을 Map으로 변환 -> Json으로 변환")
+    void t4() {
+
+        WiseSaying wiseSaying = new WiseSaying(1,"aaa", "bbb");
+        Map<String, Object> wiseSayingMap = wiseSaying.toMap();
+
+        String jsonStr = Util.Json.mapToJson(wiseSayingMap);
+
+        assertThat(jsonStr)
+                .isEqualTo("""
+                        {
+                            "id" : 1,
+                            "content" : "aaa",
+                            "author" : "bbb"
                         }
                         """.stripIndent().trim());
     }
