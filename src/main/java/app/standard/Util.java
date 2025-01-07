@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Util {
     public static class File {
@@ -112,32 +113,13 @@ public class Util {
 
             jsonBuilder.append("{\n");
 
-            int i = 0;
-            for(String key : map.keySet()) {
+            String str = map.keySet().stream()
+                    .map(k -> map.get(k) instanceof String
+                            ? "    \"%s\" : \"%s\"".formatted(k, map.get(k))
+                            : "    \"%s\" : %s".formatted(k, map.get(k))
+                    ).collect(Collectors.joining(",\n"));
 
-                // 숫자 타입, 문자 타입
-
-                Object obj = map.get(key);
-
-                if(obj instanceof String) {
-                    String value = (String)map.get(key);
-                    String tmp = "    \"%s\" : " + "\"%s\"";
-                    jsonBuilder.append(tmp.formatted(key, value));
-
-                } else if(obj instanceof Integer) {
-                    int value = (int)map.get(key);
-                    String tmp = "    \"%s\" : " + "%s";
-                    jsonBuilder.append(tmp.formatted(key, value));
-                }
-
-                if(i == map.size() - 1) {
-                    break;
-                }
-
-                jsonBuilder.append(",\n");
-                i++;
-            }
-
+            jsonBuilder.append(str);
             jsonBuilder.append("\n}");
 
             return jsonBuilder.toString();
