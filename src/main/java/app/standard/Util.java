@@ -131,6 +131,11 @@ public class Util {
         }
 
         public static Map<String, Object> readAsMap(String filePath) {
+            String jsonStr = File.readAsString(filePath);
+            return null;
+        }
+
+        public static Map<String, Object> jsonToMap(String jsonStr) {
             return null;
         }
     }

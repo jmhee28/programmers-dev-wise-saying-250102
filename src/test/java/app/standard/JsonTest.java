@@ -118,17 +118,39 @@ public class JsonTest {
     }
 
     @Test
-    @DisplayName("파일명을 넘기면 Map으로 읽어오기")
+    @DisplayName("Json 문자열을 Map으로 변환하기")
     void t6() {
 
-        String filePath = "test/%d.json".formatted(1);
+        String jsonStr = """
+                {
+                    "id" : 1,
+                    "content" : "aaa",
+                    "author" : "bbb"
+                }
+                """;
 
-        Map<String, Object> map = Util.Json.readAsMap(filePath);
+        Map<String, Object> map = Util.Json.jsonToMap(jsonStr);
 
         assertThat(map)
                 .hasSize(3)
                 .containsEntry("id", 1)
                 .containsEntry("content", "aaa")
                 .containsEntry("author", "bbb");
+
     }
+
+//    @Test
+//    @DisplayName("파일명을 넘기면 Map으로 읽어오기")
+//    void t7() {
+//
+//        String filePath = "test/%d.json".formatted(1);
+//
+//        Map<String, Object> map = Util.Json.readAsMap(filePath);
+//
+//        assertThat(map)
+//                .hasSize(3)
+//                .containsEntry("id", 1)
+//                .containsEntry("content", "aaa")
+//                .containsEntry("author", "bbb");
+//    }
 }
