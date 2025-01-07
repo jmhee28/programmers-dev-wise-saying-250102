@@ -189,4 +189,7 @@ public class WiseSayingControllerTest {
                 .doesNotContain("1 / 작자미상 / 현재를 사랑하라.")
                 .contains("1 / 새 작가 / 새 명언 내용");
     }
+
+
+
 }
