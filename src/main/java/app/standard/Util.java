@@ -35,6 +35,10 @@ public class Util {
 
             Path filePath = Paths.get(file);
 
+            if(filePath.getParent() != null) {
+                createDir(filePath.getParent().toString());
+            }
+
             try {
                 Files.writeString(filePath, content, StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
             } catch (IOException e) {

@@ -132,7 +132,6 @@ public class FileTest {
 
         Util.File.createFile(path);
 
-
         boolean rst = Files.exists(Paths.get(path));
         assertThat(rst)
                 .isTrue();
