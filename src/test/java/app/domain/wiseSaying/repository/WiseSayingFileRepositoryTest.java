@@ -96,8 +96,6 @@ public class WiseSayingFileRepositoryTest {
         assertThat(wiseSayings).hasSize(3);
         assertThat(wiseSayings).contains(wiseSaying1, wiseSaying2, wiseSaying3);
 
-
-
     }
 
 }
