@@ -24,7 +24,7 @@ public class FileTest {
     @AfterAll
     static void afterAll() {
         System.out.println("테스트 실행 후에 한번 실행");
-        Util.File.delete("test");
+        Util.File.deleteForce("test");
     }
 
     // 4. 테스트 종료 후에 test 폴더 삭제
