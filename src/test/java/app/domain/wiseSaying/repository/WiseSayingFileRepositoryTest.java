@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -75,6 +76,27 @@ public class WiseSayingFileRepositoryTest {
 
         assertThat(foundWiseSaying).isNotNull();
         assertThat(foundWiseSaying).isEqualTo(wiseSaying);
+
+    }
+
+    @Test
+    @DisplayName("모든 명언 가져오기")
+    void t4() {
+
+        WiseSaying wiseSaying1 = new WiseSaying(1,"aaa1", "bbb1");
+        WiseSaying wiseSaying2 = new WiseSaying(2,"aaa2", "bbb2");
+        WiseSaying wiseSaying3 = new WiseSaying(3,"aaa3", "bbb3");
+
+        wiseSayingRepository.save(wiseSaying1);
+        wiseSayingRepository.save(wiseSaying2);
+        wiseSayingRepository.save(wiseSaying3);
+
+        List<WiseSaying> wiseSayings = wiseSayingRepository.findAll();
+
+        assertThat(wiseSayings).hasSize(3);
+        assertThat(wiseSayings).contains(wiseSaying1, wiseSaying2, wiseSaying3);
+
+
 
     }
 
