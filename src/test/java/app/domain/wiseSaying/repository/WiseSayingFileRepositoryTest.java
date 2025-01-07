@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,7 +30,7 @@ public class WiseSayingFileRepositoryTest {
 
         wiseSayingRepository.save(wiseSaying);
 
-        String filePath = "db/wiseSaying/1.json";
+        String filePath = "db/test/wiseSaying/1.json";
 
         boolean rst = Files.exists(Path.of(filePath));
         assertThat(rst).isTrue();
@@ -51,13 +52,31 @@ public class WiseSayingFileRepositoryTest {
         WiseSaying wiseSaying = new WiseSaying(1,"aaa", "bbb");
 
         wiseSayingRepository.save(wiseSaying);
-        String filePath = "db/wiseSaying/1.json";
+        String filePath = "db/test/wiseSaying/1.json";
 
         boolean delRst = wiseSayingRepository.deleteById(1);
 
         boolean rst = Files.exists(Path.of(filePath));
         assertThat(rst).isFalse();
         assertThat(delRst).isTrue();
+    }
+
+    @Test
+    @DisplayName("아이디로 해당 명언 가져오기")
+    void t3() {
+
+        WiseSaying wiseSaying = new WiseSaying(1,"aaa", "bbb");
+
+        wiseSayingRepository.save(wiseSaying);
+        String filePath = "db/test/wiseSaying/1.json";
+
+        Optional<WiseSaying> opWiseSaying = wiseSayingRepository.findById(1);
+
+        WiseSaying foundWiseSaying = opWiseSaying.orElse(null);
+
+        assertThat(foundWiseSaying).isNotNull();
+        assertThat(foundWiseSaying).isEqualTo(wiseSaying);
+
     }
 
 }
