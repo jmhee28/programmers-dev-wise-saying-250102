@@ -108,14 +108,27 @@ public class Util {
 
         public static String mapToJson(Map<String, Object> map) {
 
-            String tmp = "";
+            String result = "";
+
+            result = "{\n";
+
+            int i = 0;
             for(String key : map.keySet()) {
                 String value = (String)map.get(key);
-                tmp = "{\n" + "    \"%s\" : " + "\"%s\"" + "\n}";
-                tmp = tmp.formatted(key, value);
+                String tmp = "    \"%s\" : " + "\"%s\"";
+                result += tmp.formatted(key, value);
+
+                if(i == map.size() - 1) {
+                    break;
+                }
+
+                result += ",\n";
+                i++;
             }
 
-            return tmp;
+            result += "\n}";
+
+            return result;
         }
     }
 }
