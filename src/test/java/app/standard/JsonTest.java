@@ -139,18 +139,33 @@ public class JsonTest {
 
     }
 
-//    @Test
-//    @DisplayName("파일명을 넘기면 Map으로 읽어오기")
-//    void t7() {
-//
-//        String filePath = "test/%d.json".formatted(1);
-//
-//        Map<String, Object> map = Util.Json.readAsMap(filePath);
-//
-//        assertThat(map)
-//                .hasSize(3)
-//                .containsEntry("id", 1)
-//                .containsEntry("content", "aaa")
-//                .containsEntry("author", "bbb");
-//    }
+    @Test
+    @DisplayName("파일명을 넘기면 Map으로 읽어오기")
+    void t7() {
+
+        String filePath = "test/%d.json".formatted(1);
+
+        Map<String, Object> map = Util.Json.readAsMap(filePath);
+
+        assertThat(map)
+                .hasSize(3)
+                .containsEntry("id", 1)
+                .containsEntry("content", "aaa")
+                .containsEntry("author", "bbb");
+    }
+
+    @Test
+    @DisplayName("Map을 WiseSaying으로 변환")
+    void t8() {
+
+        String filePath = "test/%d.json".formatted(1);
+        Map<String, Object> map = Util.Json.readAsMap(filePath);
+
+        WiseSaying wiseSaying = WiseSaying.fromMap(map);
+
+        assertThat(wiseSaying.getId()).isEqualTo(1);
+        assertThat(wiseSaying.getContent()).isEqualTo("aaa");
+        assertThat(wiseSaying.getAuthor()).isEqualTo("bbb");
+
+    }
 }

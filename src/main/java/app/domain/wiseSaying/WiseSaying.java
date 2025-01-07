@@ -33,4 +33,13 @@ public class WiseSaying {
 
         return map;
     }
+
+    public static WiseSaying fromMap(Map<String, Object> map) {
+
+        int id = (int)map.get("id");
+        String content = (String) map.get("content");
+        String author = (String) map.get("author");
+
+        return new WiseSaying(id, content, author);
+    }
 }

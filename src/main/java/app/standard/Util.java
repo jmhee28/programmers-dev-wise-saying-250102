@@ -134,18 +134,10 @@ public class Util {
 
         public static Map<String, Object> readAsMap(String filePath) {
             String jsonStr = File.readAsString(filePath);
-            return null;
+            return jsonToMap(jsonStr);
         }
 
         public static Map<String, Object> jsonToMap(String jsonStr) {
-
-//            String jsonStr = """
-//
-//                    "id" : 1,
-//                    "content" : "aaa",
-//                    "author" : "bbb"
-//
-//                """;
 
             Map<String, Object> resultMap = new LinkedHashMap<>();
 
@@ -154,9 +146,9 @@ public class Util {
                     .replaceAll("\n", "")
                     .replaceAll(" : ", ":");
 
-            Arrays.stream(jsonStr.split(",")) // ["id" : 1, "content" : "aaa", "author" : "bbb"]
-                    .map(p -> p.trim().split(":")) //  p => [""id" : 1"]
-                    .forEach(p -> { // p => ["id", 1]
+            Arrays.stream(jsonStr.split(","))
+                    .map(p -> p.trim().split(":"))
+                    .forEach(p -> {
                         String key = p[0].replaceAll("\"", "");
                         String value = p[1];
 
