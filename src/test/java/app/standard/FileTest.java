@@ -135,7 +135,17 @@ public class FileTest {
         boolean rst = Files.exists(Paths.get(path));
         assertThat(rst)
                 .isTrue();
-
     }
 
+    @Test
+    @DisplayName("파일 삭제 -> 폴더가 비어있지 않을 때 안의 내용까지 같이 삭제")
+    void t9() {
+        String path = "test/test2/test.txt";
+
+        Util.File.deleteForce(path); // 강제 삭제
+
+        boolean rst = Files.exists(Paths.get(path));
+        assertThat(rst)
+                .isFalse();
+    }
 }
