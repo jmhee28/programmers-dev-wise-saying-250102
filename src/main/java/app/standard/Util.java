@@ -5,6 +5,8 @@ import app.domain.wiseSaying.WiseSaying;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -136,7 +138,40 @@ public class Util {
         }
 
         public static Map<String, Object> jsonToMap(String jsonStr) {
-            return null;
+
+//            String jsonStr = """
+//
+//                    "id" : 1,
+//                    "content" : "aaa",
+//                    "author" : "bbb"
+//
+//                """;
+
+            Map<String, Object> resultMap = new LinkedHashMap<>();
+
+            jsonStr = jsonStr.replaceAll("\\{", "")
+                    .replaceAll("}", "")
+                    .replaceAll("\n", "")
+                    .replaceAll(" : ", ":");
+
+            Arrays.stream(jsonStr.split(",")) // ["id" : 1, "content" : "aaa", "author" : "bbb"]
+                    .map(p -> p.trim().split(":")) //  p => [""id" : 1"]
+                    .forEach(p -> { // p => ["id", 1]
+                        String key = p[0].replaceAll("\"", "");
+                        String value = p[1];
+
+                        if(value.startsWith("\"")) {
+                            resultMap.put(key, value.replaceAll("\"", ""));
+                        } else if(value.contains(".")) {
+                            resultMap.put(key, Double.parseDouble(value));
+                        } else if(value.equals("true") || value.equals("false")) {
+                            resultMap.put(key, Boolean.parseBoolean(value));
+                        } else {
+                            resultMap.put(key, Integer.parseInt(value));
+                        }
+                    });
+
+            return resultMap;
         }
     }
 }
