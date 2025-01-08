@@ -174,4 +174,34 @@ public class WiseSayingFileRepositoryTest {
                 .isEqualTo(2);
 
     }
+
+    @Test
+    @DisplayName("페이지 정보와 결과 가져오기")
+    void t8() {
+
+        WiseSaying wiseSaying1 = new WiseSaying("aaa", "bbb");
+        wiseSayingRepository.save(wiseSaying1);
+
+        WiseSaying wiseSaying2 = new WiseSaying("ccc", "ddd");
+        wiseSayingRepository.save(wiseSaying2);
+
+        WiseSaying wiseSaying3 = new WiseSaying("eee", "fff");
+        wiseSayingRepository.save(wiseSaying3);
+
+        // [List<WiseSaying> wiseSayings, totalItems, totalPages, page]= wiseSayingRepository.findAll();
+
+        Page pageContent = wiseSayingRepository.findAll();
+
+        List<WiseSaying> wiseSayings = pageContent.getWiseSayings();
+        int totalItems = pageContent.getTotalItems();
+        int totalPages = pageContent.getTotalPages();
+
+        assertThat(totalItems)
+                .isEqualTo(3);
+
+        assertThat(totalPages)
+                .isEqualTo(1);
+
+        );
+    }
 }
