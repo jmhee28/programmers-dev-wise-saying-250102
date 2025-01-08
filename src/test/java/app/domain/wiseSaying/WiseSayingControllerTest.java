@@ -276,12 +276,11 @@ public class WiseSayingControllerTest {
         TestBot.makeSample(10);
 
         String out = TestBot.run("""
-                목록
+                목록?page=2
                 """);
 
         assertThat(out)
-                .contains("[1] / 2");
+                .contains("1 / [2]");
 
     }
-
 }
