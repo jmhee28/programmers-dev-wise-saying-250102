@@ -283,4 +283,18 @@ public class WiseSayingControllerTest {
                 .contains("1 / [2]");
 
     }
+
+    @Test
+    @DisplayName("페이징 - 페이징 UI 출력, 샘플 개수에 맞는 페이지 출력")
+    void t18(){
+
+            TestBot.makeSample(30);
+
+            String out = TestBot.run("""
+                    목록?page=4
+                    """);
+
+            assertThat(out)
+                    .contains("1 / 2 / 3 / [4] / 5 / 6");
+    }
 }

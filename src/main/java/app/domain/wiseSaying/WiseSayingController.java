@@ -60,15 +60,19 @@ public class WiseSayingController {
 
     private void printPage(int page) {
 
+        // 전체 페이지 갯수로 세팅
+        int totalItems = wiseSayingService.count();
+        int itemsPerPage = 5;
+        int totalPages = (int)Math.ceil((double)totalItems / itemsPerPage); // 올림처리 필요
 
-        for(int i = 1; i <= 2; i++) {
+        for(int i = 1; i <= totalPages; i++) {
             if(i == page) {
                 System.out.print("[%d]".formatted(i));
             } else {
                 System.out.print("%d".formatted(i));
             }
 
-            if(i == 2) {
+            if(i == totalPages) {
                 System.out.println();
                 break;
             }
