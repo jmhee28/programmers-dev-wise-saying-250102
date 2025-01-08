@@ -91,4 +91,9 @@ public class WiseSayingController {
         wiseSayingService.build();
         System.out.println("data.json 파일의 내용이 갱신되었습니다.");
     }
+
+    public void makeSampleData(int cnt) {
+        wiseSayingService.makeSampleData(cnt);
+        System.out.println("샘플 데이터가 생성되었습니다.");
+    }
 }

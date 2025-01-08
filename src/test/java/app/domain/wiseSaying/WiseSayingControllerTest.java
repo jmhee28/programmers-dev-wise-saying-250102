@@ -1,7 +1,6 @@
 package app.domain.wiseSaying;
 
 import app.domain.wiseSaying.repository.WiseSayingFileRepository;
-import app.domain.wiseSaying.repository.WiseSayingRepository;
 import app.global.AppConfig;
 import app.standard.TestBot;
 import app.standard.Util;

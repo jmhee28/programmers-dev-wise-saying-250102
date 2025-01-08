@@ -21,7 +21,8 @@ public class TestBot {
     }
 
     public static void makeSample(int cnt) {
-
+        App app = new App(null);
+        app.makeSampleData(cnt); // file 저장
     }
 
 }
