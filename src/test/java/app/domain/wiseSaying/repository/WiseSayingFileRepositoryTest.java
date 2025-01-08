@@ -36,7 +36,7 @@ public class WiseSayingFileRepositoryTest {
     @DisplayName("명언 저장")
     void t1() {
 
-        WiseSaying wiseSaying = new WiseSaying(1,"aaa", "bbb");
+        WiseSaying wiseSaying = new WiseSaying(1, "aaa", "bbb");
 
         wiseSayingRepository.save(wiseSaying);
 
@@ -45,7 +45,7 @@ public class WiseSayingFileRepositoryTest {
         boolean rst = Files.exists(Path.of(filePath));
         assertThat(rst).isTrue();
 
-        Map<String, Object> map =  Util.Json.readAsMap(filePath);
+        Map<String, Object> map = Util.Json.readAsMap(filePath);
         WiseSaying restoredWiseSaying = WiseSaying.fromMap(map);
 
         System.out.println(wiseSaying);
@@ -59,7 +59,7 @@ public class WiseSayingFileRepositoryTest {
     @DisplayName("명언 삭제")
     void t2() {
 
-        WiseSaying wiseSaying = new WiseSaying(1,"aaa", "bbb");
+        WiseSaying wiseSaying = new WiseSaying(1, "aaa", "bbb");
 
         wiseSayingRepository.save(wiseSaying);
         String filePath = WiseSayingFileRepository.getFilePath(wiseSaying.getId());
@@ -75,7 +75,7 @@ public class WiseSayingFileRepositoryTest {
     @DisplayName("아이디로 해당 명언 가져오기")
     void t3() {
 
-        WiseSaying wiseSaying = new WiseSaying(1,"aaa", "bbb");
+        WiseSaying wiseSaying = new WiseSaying(1, "aaa", "bbb");
         wiseSayingRepository.save(wiseSaying);
 
         String filePath = WiseSayingFileRepository.getFilePath(wiseSaying.getId());
@@ -93,9 +93,9 @@ public class WiseSayingFileRepositoryTest {
     @DisplayName("모든 명언 가져오기")
     void t4() {
 
-        WiseSaying wiseSaying1 = new WiseSaying(1,"aaa1", "bbb1");
-        WiseSaying wiseSaying2 = new WiseSaying(2,"aaa2", "bbb2");
-        WiseSaying wiseSaying3 = new WiseSaying(3,"aaa3", "bbb3");
+        WiseSaying wiseSaying1 = new WiseSaying(1, "aaa1", "bbb1");
+        WiseSaying wiseSaying2 = new WiseSaying(2, "aaa2", "bbb2");
+        WiseSaying wiseSaying3 = new WiseSaying(3, "aaa3", "bbb3");
 
         wiseSayingRepository.save(wiseSaying1);
         wiseSayingRepository.save(wiseSaying2);
@@ -125,5 +125,35 @@ public class WiseSayingFileRepositoryTest {
 
     }
 
+    @Test
+    @DisplayName("build 하면 모든 명언을 모아 하나의 파일로 저장")
+    void t6() {
 
+        WiseSaying wiseSaying1 = new WiseSaying("aaa", "bbb");
+        wiseSayingRepository.save(wiseSaying1);
+
+        WiseSaying wiseSaying2 = new WiseSaying("ccc", "ddd");
+        wiseSayingRepository.save(wiseSaying2);
+
+        wiseSayingRepository.build();
+
+        String jsonStr = Util.File.readAsString(WiseSayingRepository.getBuildPath());
+
+        assertThat(jsonStr)
+                .isEqualTo("""
+                        [
+                            {
+                                "id" : 1,
+                                "content" : "aaa",
+                                "author" : "bbb"
+                            },
+                            {
+                                "id" : 2,
+                                "content" : "ccc",
+                                "author" : "ddd"
+                            }
+                        ]
+                        """);
+
+    }
 }
