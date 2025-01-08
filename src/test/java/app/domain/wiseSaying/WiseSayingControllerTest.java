@@ -205,6 +205,15 @@ public class WiseSayingControllerTest {
                 .contains("1 / 새 작가 / 새 명언 내용");
     }
 
+    @Test
+    @DisplayName("목록 - 명언이 하나도 등록되지 않았을 때")
+    void t13() {
+        String out = TestBot.run("""
+                목록
+                """);
 
+        assertThat(out)
+                .contains("등록된 명언이 없습니다.");
+    }
 
 }
