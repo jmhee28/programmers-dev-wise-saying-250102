@@ -156,4 +156,22 @@ public class WiseSayingFileRepositoryTest {
                         """.stripIndent().trim());
 
     }
+
+    @Test
+    @DisplayName("현재 저장된 명언의 개수를 가져오는 count")
+    void t7() {
+
+        WiseSaying wiseSaying1 = new WiseSaying("aaa", "bbb");
+        wiseSayingRepository.save(wiseSaying1);
+
+        WiseSaying wiseSaying2 = new WiseSaying("ccc", "ddd");
+        wiseSayingRepository.save(wiseSaying2);
+
+
+        int count = wiseSayingRepository.count();
+
+        assertThat(count)
+                .isEqualTo(2);
+
+    }
 }
