@@ -40,4 +40,8 @@ public class App {
             if(cmd.equals("종료")) break;
         }
     }
+
+    public void makeSampleData() {
+
+    }
 }
