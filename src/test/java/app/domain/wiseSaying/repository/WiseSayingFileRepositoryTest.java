@@ -1,5 +1,6 @@
 package app.domain.wiseSaying.repository;
 
+import app.domain.wiseSaying.Page;
 import app.domain.wiseSaying.WiseSaying;
 import app.global.AppConfig;
 import app.standard.Util;
@@ -101,7 +102,7 @@ public class WiseSayingFileRepositoryTest {
         wiseSayingRepository.save(wiseSaying2);
         wiseSayingRepository.save(wiseSaying3);
 
-        List<WiseSaying> wiseSayings = wiseSayingRepository.findAll();
+        List<WiseSaying> wiseSayings = wiseSayingRepository.findAll().getWiseSayings();
 
         assertThat(wiseSayings).hasSize(3);
         assertThat(wiseSayings).contains(wiseSaying1, wiseSaying2, wiseSaying3);
@@ -185,22 +186,23 @@ public class WiseSayingFileRepositoryTest {
         WiseSaying wiseSaying2 = new WiseSaying("ccc", "ddd");
         wiseSayingRepository.save(wiseSaying2);
 
-        WiseSaying wiseSaying3 = new WiseSaying("ccc", "ddd");
+        WiseSaying wiseSaying3 = new WiseSaying("eee", "fff");
         wiseSayingRepository.save(wiseSaying3);
-        //[List<WiseSaying> wiseSayings, totalItems, totalPages, page] = wiseSayingRepository.findAll();
-        // 반환값이 여러개이고 싶다 -> 포장
+
+        // [List<WiseSaying> wiseSayings, totalItems, totalPages, page]= wiseSayingRepository.findAll();
 
         Page pageContent = wiseSayingRepository.findAll();
 
+        List<WiseSaying> wiseSayings = pageContent.getWiseSayings();
         int totalItems = pageContent.getTotalItems();
         int totalPages = pageContent.getTotalPages();
-        //int page = pageContent.getPage();
+
 
         assertThat(totalItems)
                 .isEqualTo(3);
 
-        assertThat(totalPages).isEqualTo(1);
-
+        assertThat(totalPages)
+                .isEqualTo(1);
 
     }
 }
