@@ -268,4 +268,20 @@ public class WiseSayingControllerTest {
                 .contains("1 / 작가1 / 명언1")
                 .contains("10 / 작가10 / 명언10");
     }
+
+    @Test
+    @DisplayName("페이징 - 페이징 UI 출력")
+    void t17() {
+
+        TestBot.makeSample(10);
+
+        String out = TestBot.run("""
+                목록
+                """);
+
+        assertThat(out)
+                .contains("[1] / 2");
+
+    }
+
 }
