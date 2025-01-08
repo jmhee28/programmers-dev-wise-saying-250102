@@ -1,5 +1,7 @@
 package app.domain.wiseSaying;
 
+import app.domain.wiseSaying.repository.WiseSayingFileRepository;
+import app.domain.wiseSaying.repository.WiseSayingRepository;
 import app.global.AppConfig;
 import app.standard.TestBot;
 import app.standard.Util;
@@ -214,6 +216,25 @@ public class WiseSayingControllerTest {
 
         assertThat(out)
                 .contains("등록된 명언이 없습니다.");
+    }
+
+    @Test
+    @DisplayName("빌드")
+    void t14() {
+        String out = TestBot.run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                과거에 집착하지 마라.
+                작자미상
+                빌드
+                """);
+
+
+        boolean rst = Util.File.exists(WiseSayingFileRepository.getBuildPath());
+        assertThat(rst).isTrue();
+
     }
 
 }
