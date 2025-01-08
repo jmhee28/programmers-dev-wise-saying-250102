@@ -1,5 +1,6 @@
 package app.domain.wiseSaying.repository;
 
+import app.domain.wiseSaying.Page;
 import app.domain.wiseSaying.WiseSaying;
 import app.global.AppConfig;
 import app.standard.Util;
@@ -101,7 +102,7 @@ public class WiseSayingFileRepositoryTest {
         wiseSayingRepository.save(wiseSaying2);
         wiseSayingRepository.save(wiseSaying3);
 
-        List<WiseSaying> wiseSayings = wiseSayingRepository.findAll();
+        List<WiseSaying> wiseSayings = wiseSayingRepository.findAll().getWiseSayings();
 
         assertThat(wiseSayings).hasSize(3);
         assertThat(wiseSayings).contains(wiseSaying1, wiseSaying2, wiseSaying3);
@@ -201,7 +202,5 @@ public class WiseSayingFileRepositoryTest {
 
         assertThat(totalPages)
                 .isEqualTo(1);
-
-        );
     }
 }
