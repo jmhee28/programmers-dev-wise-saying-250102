@@ -180,11 +180,6 @@ public class JsonTest {
 
         List<WiseSaying> wiseSayings = List.of(wiseSaying1, wiseSaying2);
 
-//        List<Map<String, Object>> mapList = new ArrayList<>();
-//        for (WiseSaying wiseSaying : wiseSayings) {
-//            mapList.add(wiseSaying.toMap());
-//        }
-
         List<Map<String, Object>> mapList = wiseSayings.stream()
                 .map(WiseSaying::toMap)
                 .toList();
