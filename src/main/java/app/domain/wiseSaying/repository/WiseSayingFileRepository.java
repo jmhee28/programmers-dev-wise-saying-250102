@@ -17,6 +17,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
 
     private static final String DB_PATH = AppConfig.getDbPath() + "/wiseSaying";
     private static final String ID_FILE_PATH = DB_PATH + "/lastId.txt";
+    private static final String BUILD_PATH = DB_PATH + "/build/data.json";
 
     public WiseSayingFileRepository() {
         System.out.println("파일 DB 사용");
@@ -24,11 +25,11 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
     }
 
     public void init() {
-        if(!Util.File.exists(ID_FILE_PATH)) {
+        if (!Util.File.exists(ID_FILE_PATH)) {
             Util.File.createFile(ID_FILE_PATH);
         }
 
-        if(!Util.File.exists(DB_PATH)) {
+        if (!Util.File.exists(DB_PATH)) {
             Util.File.createDir(DB_PATH);
         }
     }
@@ -37,13 +38,13 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
 
         boolean isNew = wiseSaying.isNew();
 
-        if(isNew) {
+        if (isNew) {
             wiseSaying.setId(getLastId() + 1);
         }
 
         Util.Json.writeAsMap(getFilePath(wiseSaying.getId()), wiseSaying.toMap());
 
-        if(isNew) {
+        if (isNew) {
             setLastId(wiseSaying.getId());
         }
 
@@ -53,7 +54,6 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
     public List<WiseSaying> findAll() {
 
 
-        
 //        명령형
 //        List<Path> paths = Util.File.getPaths(DB_PATH);
 //        List<WiseSaying> wiseSayingList = new ArrayList<>();
@@ -101,7 +101,7 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
     public int getLastId() {
         String idStr = Util.File.readAsString(ID_FILE_PATH);
 
-        if(idStr.isEmpty()) {
+        if (idStr.isEmpty()) {
             return 0;
         }
 
@@ -116,4 +116,17 @@ public class WiseSayingFileRepository implements WiseSayingRepository {
         Util.File.write(ID_FILE_PATH, id);
     }
 
+    public void build() {
+
+        List<Map<String, Object>> mapList = findAll().stream()
+                .map(WiseSaying::toMap)
+                .toList();
+
+        String jsonStr = Util.Json.listToJson(mapList);
+        Util.File.write(BUILD_PATH, jsonStr);
+    }
+
+    public static String getBuildPath() {
+        return BUILD_PATH;
+    }
 }

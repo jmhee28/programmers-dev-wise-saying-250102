@@ -137,7 +137,7 @@ public class WiseSayingFileRepositoryTest {
 
         wiseSayingRepository.build();
 
-        String jsonStr = Util.File.readAsString(WiseSayingRepository.getBuildPath());
+        String jsonStr = Util.File.readAsString(WiseSayingFileRepository.getBuildPath());
 
         assertThat(jsonStr)
                 .isEqualTo("""
@@ -153,7 +153,7 @@ public class WiseSayingFileRepositoryTest {
                                 "author" : "ddd"
                             }
                         ]
-                        """);
+                        """.stripIndent().trim());
 
     }
 }
